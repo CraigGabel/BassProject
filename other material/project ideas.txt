@@ -1,0 +1,16 @@
+if a scale is selected, mark the licks that are in that scale
+
+if a lick is selected, mark the scale the lick is in
+some sort of control to keep these two features from interfering with each other and clean/simple operation
+
+licks open a new window with the lick, or embed in the same window...selectable
+
+metronome
+
+change fretboard display
+
+ability to create licks/scales, save into db
+
+exercises, tablature, same as licks (and prints the same way/spot) but uses a seperate drop down
+
+rhythm info on licks, maybe chord/key info also

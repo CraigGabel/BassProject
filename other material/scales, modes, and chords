@@ -1,0 +1,212 @@
+major modes:
+1: ionian:      r, 2, 2, 1, 2, 2, 2, 1 (r) (major scale)
+2: dorian:      r, 2, 1, 2, 2, 2, 1, 2 (r) (major scale starting on the 2nd degree)
+3: phrygian:    r, 1, 2, 2, 2, 1, 2, 2 (r) (maj scale 3rd degree)
+4: lydian:      r, 2, 2, 2, 1, 2, 2, 1 (r)
+5: mixolydian:  r, 2, 2, 1, 2, 2, 1, 2 (r)
+6: aeolian:     r, 2, 1, 2, 2, 1, 2, 2 (r) (minor scale, major scale 6th degree) <-- this is referred to as the relative minor
+7: locrian:     r, 1, 2, 2, 1, 2, 2, 2 (r)
+
+melodic minor modes:
+1: Melodic minor:       r, 2, 1, 2, 2, 2, 2, 1 (r) (aka jazz minor scale) r, M2, m3, P4, P5, M6, M7, r
+2: Dorian b2:           r, 1, 2, 2, 2, 2, 1, 2 (r) (aka Phrygian #6)
+3: Lydian augmented:    r, 2, 2, 2, 2, 1, 2, 1 (r)
+4: Lydian dominant:     r, 2, 2, 2, 1, 2, 1, 2 (r) (aka overtone scale)
+5: Mixolydian b6:       r, 2, 2, 1, 2, 1, 2, 2 (r)
+6: Aeolian b5:          r, 2, 1, 2, 1, 2, 2, 2 (r) (aka Locrian #2)
+7: Altered scale:       r, 1, 2, 1, 2, 2, 2, 2 (r) (aka super Locrian)
+
+harmonic minor modes:
+1: Harmonic Minor:      r, 2, 1, 2, 2, 1, 3, 1 (r) r, M2, m3, P4, P5, m6, M7, r
+2: Locrian #6:          r, 1, 2, 2, 1, 3, 1, 2 (r)
+3: Ionian #5:           r, 2, 2, 1, 3, 1, 2, 1 (r)
+4: Dorian #4:           r, 2, 1, 3, 1, 2, 1, 2 (r)
+5: Phrygian Dominant:   r, 1, 3, 1, 2, 1, 2, 2 (r)
+6: Lydian #2:           r, 3, 1, 2, 1, 2, 2, 1 (r)
+7: Superlocrian:        r, 1, 2, 1, 2, 2, 1, 3 (r)
+
+blues:
+1: major: r, 2, 1, 1, 3, 2, 3 (r) r, M2, m3, M3, P5, M6, r
+6: minor: r, 3, 2, 1, 1, 3, 2 (r) r, m3, P4, A4, P5, m7, r
+   minor: r, 3, 2, 1, 1, 3, 2 (r)
+
+pentatonic:
+1: major: r, 2, 2, 3, 2, 3 (r) r, M2, M3, P5, M6, r
+5: minor: r, 3, 2, 2, 3, 2 (r)
+
+chords: (root C)
+major:
+    maj:
+    E, C, E, G, C, E
+    C, E, G
+    r, M3, P5
+minor:
+    m:
+    C, Eb, G, C
+major sixth:
+    maj6:
+    G, E, A, C
+minor sixth:
+    m6:
+    A, Eb, G, C
+six-nine:
+    69:
+    C, E, A, D, G
+major seventh:
+    maj7:
+    C, E, G, B, E
+dominant seventh:
+    dom7:
+    G, C, E, Bb
+dominant seventh flat 5:
+    dom7b5:
+    C, G, Bb, E
+    C, Gb, Bb, E (?)
+dominant seventh sharp 5:
+    dom7+:
+    C, G#, Bb, E
+minor seventh:
+    m7:
+    C, G, Eb, Bb
+minor with a major seventh:
+    m(maj7):
+    C, G, B, Eb
+minor seventh flat 5 (half-diminished seventh):
+    m7b5:
+    C, Gb, Bb, Eb
+diminished seventh:
+    °7:
+    C, Bbb, Eb, Gb (?)
+dominant ninth:
+    dom9:
+    C, E, Bb, D, G (?)
+dominant ninth flat 5:
+    dom9b5:
+    C, E, Bb, D, Gb
+dominant ninth sharp 5:
+    dom9+:
+    C, E, Bb, D, G#
+major ninth:
+    maj9:
+    C, G, B, D, E
+minor ninth:
+    m9:
+    C, Eb, Bb, D, G (?)
+minor eleventh:
+    m11:
+    C, F, Bb, Eb, G (?)
+dominant thirteenth:
+    dom13:
+    C, A, E, Bb
+    C, A, E, Bb, D (?)
+major thirteenth:
+    maj13:
+    C, B, E, A, G (?)
+minor thirteenth:
+    m13:
+    C, Bb, Eb, A, G (?)
+suspended fourth:
+    sus4:
+    F, G, C, G
+dominant seventh with a suspended fourth:
+    dom7sus4:
+    C, G, F, Bb
+dominant ninth with a suspended fourth:
+    dom9sus4:
+    C, Bb, D, F
+    C, Bb, D, F, G (?)
+
+
+r, m2, M2, m3, M3, P4, A4, P5, m6, M6, m7, M7
+r, b2,  2, b3,  3,  4, b5,  5, b6,  6, b7,  7
+
+Major (M) (ma) (maj):            1,  3,  5
+                                 r, M3, P5
+Minor (m) (min) (-):             1, b3,  5
+                                 1, m3, P5
+Augmented (+) (aug):             1,  3, b6
+                                 1, M3, m6
+Flat Five (b5):                  1,  3, b5
+                                 1, M3, A4
+Diminished (°) (dim):            1, b3, b5
+                                 1, m3, A4
+Suspended (sus4) (sus.):         1,  4,  5
+                                 1, P4, P5
+Sus 2:                           1,  2,  5
+                                 1, M2, P5
+Major sixth (sixth) (6) (M6):    1,  3,  5,  6
+                                 1, M3, P5, M6
+Minor sixth (m6):                1, b3,  5,  6
+                                 1, m3, P5, M6
+Seventh (dominant seventh) (7):  1,  3,  5, b7
+                                 1, M3, P5, m7
+Major seventh (M7) (∆7):         1,  3,  5,  7
+                                 1, M3, P5, M7
+Minor seventh (m7) (-7):         1, b3,  5, b7
+                                 1, m3, P5, m7
+Augmented seventh (+7) (7+5):    1,  3, b6, b7
+                                 1, M3, m6, m7
+Diminished seventh (dim 7) (°7): 1, b3, b5,  6
+                                 1, m3, A4, M6
+Seventh flat five (7b5):         1,  3, b5, b7
+                                 1, M3, A4, m7
+Minor seven flat five (m7b5):    1, b3, b5, b7
+                                 1, m3, A4, m7
+Ninth (dominant ninth)(9):       1,  3,  5, b7,  9
+                                 1, M3, P5, m7, M2
+Major ninth (M9):                1,  3,  5,  7,  9
+                                 1, M3, P5, M7, M2
+Minor ninth (m9):                1, b3,  5, b7,  9
+                                 1, m3, P5, m7, M2
+Add nine (add9):                 1,  3,  5,  9
+                                 1, M3, P5, M2
+Eleventh (11):                   1,  3,  5,  7,  9, 11
+                                 1, M3, P5, M7, M2, P4
+Thirteenth (13):                 1,  3,  5,  7,  9, 11, 13
+                                 1, M3, P5, M7, M2, P4, M6
+
+Major (M) (ma) (maj):            1,  3,  5
+Minor (m) (min) (-):             1, b3,  5
+Augmented (+) (aug):             1,  3, b6
+Flat Five (b5):                  1,  3, b5
+Diminished (°) (dim):            1, b3, b5
+Suspended (sus4) (sus.):         1,  4,  5
+Sus 2:                           1,  2,  5
+Major sixth (sixth) (6) (M6):    1,  3,  5,  6
+Minor sixth (m6):                1, b3,  5,  6
+Seventh (dominant seventh) (7):  1,  3,  5, b7
+Major seventh (M7) (∆7):         1,  3,  5,  7
+Minor seventh (m7) (-7):         1, b3,  5, b7
+Augmented seventh (+7) (7+5):    1,  3, b6, b7
+Diminished seventh (dim 7) (°7): 1, b3, b5,  6
+Seventh flat five (7b5):         1,  3, b5, b7
+Minor seven flat five (m7b5):    1, b3, b5, b7
+Ninth (dominant ninth)(9):       1,  3,  5, b7,  9
+Major ninth (M9):                1,  3,  5,  7,  9
+Minor ninth (m9):                1, b3,  5, b7,  9
+Add nine (add9):                 1,  3,  5,  9
+Eleventh (11):                   1,  3,  5,  7,  9, 11
+Thirteenth (13):                 1,  3,  5,  7,  9, 11, 13
+
+Major (M) (ma) (maj):            r, M3, P5
+Minor (m) (min) (-):             1, m3, P5
+Augmented (+) (aug):             1, M3, m6
+Flat Five (b5):                  1, M3, A4
+Diminished (°) (dim):            1, m3, A4
+Suspended (sus4) (sus.):         1, P4, P5
+Sus 2:                           1, M2, P5
+Major sixth (sixth) (6) (M6):    1, M3, P5, M6
+Minor sixth (m6):                1, m3, P5, M6
+Seventh (dominant seventh) (7):  1, M3, P5, m7
+Major seventh (M7) (∆7):         1, M3, P5, M7
+Minor seventh (m7) (-7):         1, m3, P5, m7
+Augmented seventh (+7) (7+5):    1, M3, m6, m7
+Diminished seventh (dim 7) (°7): 1, m3, A4, M6
+Seventh flat five (7b5):         1, M3, A4, m7
+Minor seven flat five (m7b5):    1, m3, A4, m7
+Ninth (dominant ninth)(9):       1, M3, P5, m7, M2
+Major ninth (M9):                1, M3, P5, M7, M2
+Minor ninth (m9):                1, m3, P5, m7, M2
+Add nine (add9):                 1, M3, P5, M2
+Eleventh (11):                   1, M3, P5, M7, M2, P4
+Thirteenth (13):                 1, M3, P5, M7, M2, P4, M6
