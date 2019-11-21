@@ -1,7 +1,11 @@
 
 package application;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.LinkedList;
+import java.util.Map;
+import org.json.simple.parser.ParseException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -50,13 +54,13 @@ public class Main extends Application
 
 				for (Scale scale: scaleList)
 				{
-					if (scale.name.equals(mItem.getParentMenu().getText()))
+					if (scale.group.equals(mItem.getParentMenu().getText()))
 					{
 						for (Modes mode: scale.modes)
 						{
 							if (mode.name.equals(mItem.getText()))
 							{
-								ChromaticScale chromaticScale = new ChromaticScale(scale.name + " - " + rootNote + " " + mode.name,
+								ChromaticScale chromaticScale = new ChromaticScale(scale.group + " - " + rootNote + " " + mode.name,
 										                                  		   rootNote,
 										                                  		   scale.getIntervals(mode.offset));
 
@@ -84,22 +88,47 @@ public class Main extends Application
 			{
 				MenuItem mItem = (MenuItem) event.getSource();
 
+//				for (Chords chord: chordList)
+//				{
+//					if (chord.name.equals(mItem.getText()))
+//					{
+//						ChromaticScale chromaticScale = new ChromaticScale(rootNote + " " + chord.name,
+//								  										   rootNote,
+//								  										   chord.intervals);
+//
+//						System.out.println(chromaticScale.name);
+//						System.out.println(chromaticScale.toStringIntervals());
+//						System.out.println(chromaticScale.toStringNotes());
+//						System.out.println();
+////						fretboardIntervals.labelFretboard(scale);
+//						fretboardIntervals.highlightFretboard(chromaticScale);
+////						fretboardNotes.labelFretboard(scale);
+//						fretboardNotes.highlightFretboard(chromaticScale);
+//					}
+//				}
+
 				for (Chords chord: chordList)
 				{
-					if (chord.name.equals(mItem.getText()))
+					if (chord.group.equals(mItem.getParentMenu().getText()))
 					{
-						ChromaticScale chromaticScale = new ChromaticScale(rootNote + " " + chord.name,
-								  										   rootNote,
-								  										   chord.intervals);
+						for (Map.Entry<String, LinkedList<Integer>> entry : chord.chordMembers.entrySet())
+						{
+							if (entry.getKey().equals(mItem.getText()))
+							{
+								ChromaticScale chromaticScale = new ChromaticScale(chord.group + " - " + rootNote + " " + entry.getKey(),
+										                                  		   rootNote,
+										                                  		   entry.getValue());
 
-						System.out.println(chromaticScale.name);
-						System.out.println(chromaticScale.toStringIntervals());
-						System.out.println(chromaticScale.toStringNotes());
-						System.out.println();
-//						fretboardIntervals.labelFretboard(scale);
-						fretboardIntervals.highlightFretboard(chromaticScale);
-//						fretboardNotes.labelFretboard(scale);
-						fretboardNotes.highlightFretboard(chromaticScale);
+								System.out.println(chromaticScale.name);
+								System.out.println(chromaticScale.toStringIntervals());
+								System.out.println(chromaticScale.toStringNotes());
+								System.out.println();
+//								fretboardIntervals.labelFretboard(chromaticScale);
+								fretboardIntervals.highlightFretboard(chromaticScale);
+//								fretboardNotes.labelFretboard(chromaticScale);
+								fretboardNotes.highlightFretboard(chromaticScale);
+							}
+						}
 					}
 				}
 			}
@@ -187,7 +216,7 @@ public class Main extends Application
 
 			if (scale.modes.size() > 0)
 			{
-				Menu subMenu = new Menu(scale.name);
+				Menu subMenu = new Menu(scale.group);
 				for (Modes mode: scale.modes)
 				{
 					MenuItem menuItem = new MenuItem(mode.name);
@@ -198,7 +227,7 @@ public class Main extends Application
 			}
 			else
 			{
-				MenuItem menuItem = new MenuItem(scale.name);
+				MenuItem menuItem = new MenuItem(scale.group);
 				menuItem.setOnAction(action);
 				menu1.getItems().add(menuItem);
 			}
@@ -209,9 +238,15 @@ public class Main extends Application
 		for (Chords chord: chordList)
 		{
 			EventHandler<ActionEvent> action = showChord();
-			MenuItem menuItem = new MenuItem(chord.name);
-			menuItem.setOnAction(action);
-			menu2.getItems().add(menuItem);
+
+			Menu subMenu = new Menu(chord.group);
+			for (Map.Entry<String, LinkedList<Integer>> entry : chord.chordMembers.entrySet())
+			{
+				MenuItem menuItem = new MenuItem(entry.getKey());
+				menuItem.setOnAction(action);
+				subMenu.getItems().add(menuItem);
+			}
+			menu2.getItems().add(subMenu);
 		}
 
 		Menu menu3 = new Menu("Licks");
@@ -257,22 +292,61 @@ public class Main extends Application
 	}
 
 	@Override
-	public void start(Stage primaryStage)
+	public void start(Stage primaryStage) throws FileNotFoundException, IOException, ParseException
 	{
-		// db interface
-		DB_Interface db_interface = new DB_Interface(); // create interface to database
-		//read data from databases
-		scaleList = db_interface.readDB_Scales();
-		lickList = db_interface.readDB_Licks();
-		chordList = db_interface.readDB_Chords();
-		chordProgressionList = db_interface.readDB_ChordProgression();
-		jamProgressionList = db_interface.readDB_JamProgression();
-		// end of db interface
+		// JSON interface
+		JSON_Interface json_Interface = new JSON_Interface();
+		scaleList = json_Interface.readJSON_Scales("src//application//scales.json");
+		chordList = json_Interface.readJSON_Chords("src//application//chords.json");
 
-		ChromaticScale testScale = new ChromaticScale(ChromaticScale.NOTE_SHARPS[3] + " " + chordList.get(0).name, ChromaticScale.NOTE_SHARPS[3], chordList.get(0).intervals);
-		System.out.println(testScale.name);
-		System.out.println(testScale.toStringIntervals());
-		System.out.println(testScale.toStringNotes());
+
+		// db interface
+//		DB_Interface db_interface = new DB_Interface(); // create interface to database
+//		//read data from databases
+//		scaleList = db_interface.readDB_Scales();
+//		lickList = db_interface.readDB_Licks();
+//		chordList = db_interface.readDB_Chords();
+//		chordProgressionList = db_interface.readDB_ChordProgression();
+//		jamProgressionList = db_interface.readDB_JamProgression();
+//		// end of db interface
+
+//		ChromaticScale testScale = new ChromaticScale(ChromaticScale.NOTE_SHARPS[3] + " " + chordList.get(0).name, ChromaticScale.NOTE_SHARPS[3], chordList.get(0).intervals);
+//		System.out.println(testScale.name);
+//		System.out.println(testScale.toStringIntervals());
+//		System.out.println(testScale.toStringNotes());
+
+//		Scale testScale = new Scale();
+//		testScale.id = 999;
+//		testScale.name = "major";
+//		testScale.intervals.add(2);
+//		testScale.intervals.add(2);
+//		testScale.intervals.add(1);
+//		testScale.intervals.add(2);
+//		testScale.intervals.add(2);
+//		testScale.intervals.add(2);
+//		testScale.intervals.add(1);
+//		for (int i = 0; i<7; i++)
+//		{
+//			Modes testModes = new Modes();
+//			testModes.name = "mode" + Integer.toString(i);
+//			testModes.offset = i;
+//			testScale.modes.add(testModes);
+//		}
+//		scaleList.add(testScale);
+
+//		Chords testChords = new Chords();
+//		testChords.group = "triads";
+//		LinkedList<Integer> temp = new LinkedList<>();
+//		temp.add(4);
+//		temp.add(3);
+//		testChords.chordMembers.put("major", temp);
+//		temp = new LinkedList<>();
+//		temp.add(3);
+//		temp.add(4);
+//		testChords.chordMembers.put("minor", temp);
+//
+//		chordList.add(testChords);
+
 
 		// left pane - fretboard, intervals
 		fretboardIntervals = new Fretboard_Intervals();
@@ -322,7 +396,7 @@ public class Main extends Application
 		window.show();
 		// end of window stuff
 
-		WalkingBass walkingBass = new WalkingBass();
-		walkingBass.doTheThing();
+//		WalkingBass walkingBass = new WalkingBass();
+//		walkingBass.doTheThing();
 	}
 }

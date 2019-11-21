@@ -2,6 +2,7 @@ package application;
 
 import java.awt.CheckboxMenuItem;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Random;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -143,14 +144,14 @@ public class ScaleWindow
 
 				for (int i = 0; i < Main.scaleList.size(); i++)
 				{
-					if (Main.scaleList.get(i).name.equals(mItem.getParentMenu().getText()))
+					if (Main.scaleList.get(i).group.equals(mItem.getParentMenu().getText()))
 					{
 						for (int j = 0; j < Main.scaleList.get(i).modes.size(); j++)
 						{
 							if (Main.scaleList.get(i).modes.get(j).name.equals(mItem.getText()))
 							{
 								scales.get(scaleIndex).setSemiToneSelection(Main.scaleList.get(i).getIntervals(j));
-								scales.get(scaleIndex).name = Main.scaleList.get(i).name + " " + Main.scaleList.get(i).modes.get(j).name;
+								scales.get(scaleIndex).name = Main.scaleList.get(i).group + " " + Main.scaleList.get(i).modes.get(j).name;
 
 //								window.close();
 //								initScaleWindow();
@@ -176,17 +177,23 @@ public class ScaleWindow
 
 				for (int i = 0; i < Main.chordList.size(); i++)
 				{
-					if (Main.chordList.get(i).name.equals(mItem.getText()))
+					if (Main.chordList.get(i).group.equals(mItem.getParentMenu().getText()))
 					{
-						scales.get(scaleIndex).setSemiToneSelection(Main.chordList.get(i).intervals);
-						scales.get(scaleIndex).name = Main.chordList.get(i).name;
+						for (Map.Entry<String, LinkedList<Integer>> entry : Main.chordList.get(i).chordMembers.entrySet())
+						{
+							if (entry.getKey().equals(mItem.getText()))
+							{
+								scales.get(scaleIndex).setSemiToneSelection(entry.getValue());
+								scales.get(scaleIndex).name = entry.getKey();
 
-//						window.close();
-//						initScaleWindow();
-//						fillCenterPane2();
-						updateCenterPaneData();
-						window.sizeToScene();
-//						paintWindow();
+//								window.close();
+//								initScaleWindow();
+//								fillCenterPane2();
+								updateCenterPaneData();
+								window.sizeToScene();
+//								paintWindow();
+							}
+						}
 					}
 				}
 			}
@@ -283,7 +290,7 @@ public class ScaleWindow
 		{
 			public void handle(ActionEvent event)
 			{
-				scales.add(new ChromaticScale(Main.scaleList.get(0).name + " " + Main.scaleList.get(0).modes.get(0).name,
+				scales.add(new ChromaticScale(Main.scaleList.get(0).group + " " + Main.scaleList.get(0).modes.get(0).name,
 			                                  ChromaticScale.NOTE_SHARPS[0],
 			                                  Main.scaleList.get(0).getIntervals(0)));
 //				highlightApproachNotes.add(new Integer(0));
@@ -342,7 +349,7 @@ public class ScaleWindow
 
 				if (Main.scaleList.get(j).modes.size() > 0)
 				{
-					Menu subMenu = new Menu(Main.scaleList.get(j).name);
+					Menu subMenu = new Menu(Main.scaleList.get(j).group);
 					for (int k = 0; k < Main.scaleList.get(j).modes.size(); k++)
 					{
 						MenuItem menuItem = new MenuItem(Main.scaleList.get(j).modes.get(k).name);
@@ -353,7 +360,7 @@ public class ScaleWindow
 				}
 				else
 				{
-					MenuItem menuItem = new MenuItem(Main.scaleList.get(j).name);
+					MenuItem menuItem = new MenuItem(Main.scaleList.get(j).group);
 					menuItem.setOnAction(action);
 					menu1.getItems().add(menuItem);
 				}
@@ -361,12 +368,18 @@ public class ScaleWindow
 
 			Menu menu2 = new Menu("Chords");
 
-			for (int chordIndex = 0; chordIndex < Main.chordList.size(); chordIndex++)
+			for (int j = 0; j < Main.chordList.size(); j++)
 			{
-				EventHandler<ActionEvent> action = setChord(i);
-				MenuItem menuItem = new MenuItem(Main.chordList.get(chordIndex).name);
-				menuItem.setOnAction(action);
-				menu2.getItems().add(menuItem);
+				EventHandler<ActionEvent> action = setScale(i);
+
+				Menu subMenu = new Menu(Main.chordList.get(j).group);
+				for (Map.Entry<String, LinkedList<Integer>> entry : Main.chordList.get(j).chordMembers.entrySet())
+				{
+					MenuItem menuItem = new MenuItem(entry.getKey());
+					menuItem.setOnAction(action);
+					subMenu.getItems().add(menuItem);
+				}
+				menu2.getItems().add(subMenu);
 			}
 
 			Menu menu3 = new Menu("-");

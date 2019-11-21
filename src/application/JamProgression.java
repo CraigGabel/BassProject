@@ -1,6 +1,7 @@
 package application;
 
 import java.util.LinkedList;
+import java.util.Map;
 
 public class JamProgression
 {
@@ -59,16 +60,36 @@ public class JamProgression
 			String note = new String(ChromaticScale.NOTE_SHARPS[(startingNoteIndex + totalInterval)%ChromaticScale.SEMITONE_COUNT]);
 
 			//calculates which chord type is
+			///TBD: this was broken with the change to chord class...needs testing
 			Chords chord = Main.chordList.get(0);
+			String chordName = "";
+			LinkedList<Integer> chordIntervals = new LinkedList<>();
+
 			for (int k = 0; k < Main.chordList.size(); k++)
 			{
-				if (Main.chordProgressionList.get(chordProgressionListIndex).chord.get(this.chordIndex.get(j)-1).equals(Main.chordList.get(k).name))
+				for (Map.Entry<String, LinkedList<Integer>> entry : Main.chordList.get(k).chordMembers.entrySet())
 				{
-					chord = Main.chordList.get(k);
+					if (Main.chordProgressionList.get(chordProgressionListIndex).chord.get(this.chordIndex.get(j)-1).equals(entry.getKey()))
+					{
+						chord = Main.chordList.get(k);	//is this useful?
+						chordName = entry.getKey();
+						chordIntervals = entry.getValue();
+					}
 				}
 			}
 
-			scales.add(new ChromaticScale(chord.name, note, chord.intervals));
+			// previous version
+//			Chords chord = Main.chordList.get(0);
+//			for (int k = 0; k < Main.chordList.size(); k++)
+//			{
+//				if (Main.chordProgressionList.get(chordProgressionListIndex).chord.get(this.chordIndex.get(j)-1).equals(Main.chordList.get(k).name))
+//				{
+//					chord = Main.chordList.get(k);
+//				}
+//			}
+
+			///TBD: this was broken with the change to chord class...needs testing
+			scales.add(new ChromaticScale(chordName, note, chordIntervals));
 		}
 
 		return scales;

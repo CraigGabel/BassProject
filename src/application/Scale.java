@@ -4,8 +4,7 @@ import java.util.LinkedList;
 
 public class Scale
 {
-	public int id;
-	public String name;
+	public String group;
 	LinkedList<Modes> modes;
 	LinkedList<Integer> intervals;
 
@@ -17,8 +16,7 @@ public class Scale
 
 	public Scale(Scale scale)
 	{
-		id = scale.id;
-		name = scale.name;
+		group = scale.group;
 
 		modes = new LinkedList<Modes>();
 

@@ -1,0 +1,26 @@
+chords
+
+triads
+	major      r-M3-P5
+	minor      r-m3-P5
+	augmented  r-M3-m6
+	diminished r-m3-A4
+
+seventh
+	diminished      r-m3-A4-M6
+	half-diminished r-m3-A4-m7
+	minor           r-m3-P5-m7
+	minor major     r-m3-P5-M7
+	dominant        r-M3-P5-m7
+	major           r-M3-P5-M7
+	augmented       r-M3-m6-m7
+	augmented major r-M3-m6-M7
+
+power
+	r-P5-r
+
+suspended
+	sus4 r-P4-P5
+	sus2 r-M2-P5
+
+r m2 M2 m3 M3 P4 A4 P5 m6 M6 m7 M7
