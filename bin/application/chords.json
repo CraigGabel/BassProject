@@ -1,0 +1,37 @@
+{
+	"Chords":
+	[
+		{
+			"group":"triads",
+			"members":
+				[
+					{"name":"major","intervals":["4","3"]},
+					{"name":"minor","intervals":["3","4"]},
+					{"name":"augmented","intervals":["4","4"]},
+					{"name":"diminished","intervals":["3","3"]}
+				]
+		},
+		{
+			"group":"seventh",
+			"members":
+			[
+				{"name":"diminished","intervals":["3","3","3"]},
+				{"name":"half-diminished","intervals":["3","3","4"]},
+				{"name":"minor","intervals":["3","4","3"]},
+				{"name":"minor major","intervals":["3","4","4"]},
+				{"name":"dominant","intervals":["4","3","3"]},
+				{"name":"major","intervals":["4","3","4"]},
+				{"name":"augmented","intervals":["4","4","2"]},
+				{"name":"augmented major","intervals":["4","4","3"]}
+			]
+		},
+		{
+			"group":"suspended",
+			"members":
+			[
+				{"name":"sus2","intervals":["2","5"]},
+				{"name":"sus4","intervals":["2","5"]}
+			]
+		}
+	]
+}

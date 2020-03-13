@@ -1,0 +1,28 @@
+scales
+	id (int)
+	name (String)
+	modes (linked list <Modes>)
+		Modes
+			name (String)
+			offset (int)
+	intervals (linked list <Integer>)
+chords
+	id (int)
+	name (String)
+	symbol (String)
+	intervals (linked list <Integer>)
+chord progression
+	id (int)
+	name (String)
+	interval (linked list <Integer>)
+	chord (linked list <String>)
+jam progression
+	???
+licks
+	id (int)
+	lickVersion (int)
+	name (String)
+	measure (array of Measure)
+		Measure
+			noteCount (int)
+			note (array of String)
