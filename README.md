@@ -4,7 +4,9 @@ It is a GUI that currently shows simple chords/scales for a 4-string bass guitar
 
 The project is currently (01/03/2020) dormant.  It is in the middle of transitioning away from RDB to json files.  Only chords and scales have made the transition (licks and jam progressions are yet to transition).
 
-You will need to install JavaFX to run this code.
+Execute bass_proj.jar to run code.
+
+You will need to install JavaFX to modify this code.
 
 to install JavaFX in Eclipse:
 1)	Go to help menu -> install new software…
